@@ -394,6 +394,12 @@ public class ImagePreviewActivity extends Activity {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
+                if(EUEXImageConfig.getInstance().getMaxImageCount()==1){
+                    checkedItems.clear();
+                    checkedItems.add((String) buttonView.getTag());
+                    adapter.notifyDataSetChanged();
+
+                }
                 if (!checkedItems.contains(buttonView.getTag())) {
                     if(checkedItems.size() >=  EUEXImageConfig.getInstance().getMaxImageCount()){
                         Toast.makeText(ImagePreviewActivity.this, "最多选择" +  EUEXImageConfig.getInstance().getMaxImageCount() + "张图片", Toast.LENGTH_SHORT).show();
